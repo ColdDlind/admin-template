@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import NotFindCom from "./views/404.vue";
+import NotFound from "./views/404.vue";
 import Nprogress from "nprogress";
 import "nprogress/nprogress.css";
 Vue.use(Router);
@@ -11,24 +11,25 @@ const router = new Router({
   routes: [
     {
       path: "/user",
+      hideInMenu: true,
       component: () =>
-        import(/* webpackChunkName: "layouts" */ "./layouts/UserLayout.vue"),
+        import(/* webpackChunkName: "layout" */ "./layouts/UserLayout"),
       children: [
         {
-          path: "",
-          redirect: "login"
+          path: "/user",
+          redirect: "/user/login"
         },
         {
-          path: "login",
+          path: "/user/login",
           name: "login",
           component: () =>
-            import(/* webpackChunkName: "user" */ "./views/User/Login.vue")
+            import(/* webpackChunkName: "user" */ "./views/User/Login")
         },
         {
-          path: "register",
+          path: "/user/register",
           name: "register",
           component: () =>
-            import(/* webpackChunkName: "user" */ "./views/User/Register.vue")
+            import(/* webpackChunkName: "user" */ "./views/User/Register")
         }
       ]
     },
@@ -61,13 +62,10 @@ const router = new Router({
         // form
         {
           path: "/form",
+          name: "form",
           component: { render: h => h("router-view") },
           meta: { icon: "form", title: "表单", authority: ["admin"] },
           children: [
-            {
-              path: "",
-              redirect: "basic-form"
-            },
             {
               path: "/form/basic-form",
               name: "basicform",
@@ -114,7 +112,8 @@ const router = new Router({
     {
       path: "*",
       name: "404",
-      component: NotFindCom
+      hideInMenu: true,
+      component: NotFound
     }
   ]
 });
