@@ -46,20 +46,6 @@ export default {
 };
 </script>
 
-<style lang="less" >
-@import "~ant-design-vue/lib/style/themes/default.less";
+<style lang="less" src="./index.less">
 
-.drawer-button {
-  position: absolute;
-  top: 240px;
-  right: 300px;
-  width: 48px;
-  height: 48px;
-  background: @primary-color;
-  color: #fff;
-  font-size: 20px;
-  text-align: center;
-  line-height: 48px;
-  border-radius: 3px 0 0 3px;
-}
 </style>
