@@ -1,5 +1,5 @@
 <template>
-    <div>BasicForm</div>
+  <div>form</div>
 </template>
 
 <script>

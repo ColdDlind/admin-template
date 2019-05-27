@@ -58,6 +58,20 @@ const router = new Router({
                 import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis")
             }
           ]
+        }, {
+          path: "/editor",
+          name: "editor",
+          meta: { icon: "editor", title: "编辑器" },
+          component: { render: h => h("router-view") },
+          children: [
+            {
+              path: "/editor/vue-quill-editor",
+              name: "vue-quill-editor",
+              meta: { title: "quillEditor" },
+              component: () =>
+                import(/* webpackChunkName: "Editor" */ "./views/Editor/VueQuillEditor")
+            }
+          ]
         },
         // form
         {
