@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #routerView {
+            width: 100%;
+            height: 300px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- router-link -->
+    <div>
+        <ul>
+            <li><a href="#home">home</a></li>
+            <li><a href="#about">about</a></li>
+        </ul>
+    </div>
+    <hr>
+    <!-- router-view -->
+    <div id="routerView">
+
+    </div>
+    <script>
+        var router = null;
+        window.onload = function () {
+            router = document.querySelector("#routerView")
+            onHashchange()
+        }
+
+        window.addEventListener("hashchange", onHashchange)
+
+        function onHashchange() {
+            switch (location.hash) {
+                case "" || "/":
+                    router.innerHTML = "首页"
+                    break;
+                case "#home":
+                    router.innerHTML = "home"
+                    break;
+                case "#about":
+                    router.innerHTML = "about"
+                    break;
+                default:
+                    router.innerHTML = "首页"
+            }
+        }
+    </script>
+</body>
+
+</html>

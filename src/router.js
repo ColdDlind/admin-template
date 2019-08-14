@@ -59,6 +59,26 @@ const router = new Router({
             }
           ]
         }, {
+          path: "/export",
+          name: "export",
+          meta: { icon: "export", title: "导出" },
+          component: { render: h => h("router-view") },
+          children: [
+            {
+              path: "/export/table",
+              name: "table",
+              meta: { title: "导出" },
+              component: () =>
+                import(/* webpackChunkName: "dashboard" */ "./views/export/tableExport")
+            },  {
+              path: "/export/jsExport",
+              name: "jsExport",
+              meta: { title: "原生导出" },
+              component: () =>
+                import(/* webpackChunkName: "dashboard" */ "./views/export/jsExport")
+            }
+          ]
+        }, {
           path: "/editor",
           name: "editor",
           meta: { icon: "editor", title: "编辑器" },
@@ -70,6 +90,13 @@ const router = new Router({
               meta: { title: "quillEditor" },
               component: () =>
                 import(/* webpackChunkName: "Editor" */ "./views/Editor/VueQuillEditor")
+            },
+            {
+              path: "/editor/Tinymce",
+              name: "Tinymce",
+              meta: { title: "Tinymce" },
+              component: () =>
+                import(/* webpackChunkName: "Editor" */ "./views/Editor/Tinymce")
             }
           ]
         },

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .wrapper {
+            height: 100%;
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .item {
+            margin: 20px 0
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="item" v-for="(item,index) in 50">
+                <p> ----{{index}}---- </p>
+            </div>
+        </div>
+        <div style="height: 50px;background:red;position: fixed;bottom:0;width: 100%;left: 0;text-align: center">
+            <button @click="scrollBottom" style="height: 50px;">点击设置</button>
+        </div>
+    </div>
+    <script>
+        var VM = new Vue({
+            el: "#app",
+            methods: {
+                scrollBottom() {
+                    let maxHeight = document.querySelector(".container").offsetHeight
+                    scrollTo(0, maxHeight)
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

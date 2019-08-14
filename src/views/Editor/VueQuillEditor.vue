@@ -26,20 +26,20 @@ import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 import { quillEditor } from "vue-quill-editor";
 const toolbarOptions = [
-  ["bold", "italic", "underline", "strike"], // toggled buttons
+  ["bold", "italic", "underline", "strike"],
   ["blockquote", "code-block"],
-  [{ header: 1 }, { header: 2 }], // custom button values
+  [{ header: 1 }, { header: 2 }],
   [{ list: "ordered" }, { list: "bullet" }],
-  [{ script: "sub" }, { script: "super" }], // superscript/subscript
-  [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-  [{ direction: "rtl" }], // text direction
-  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+  [{ script: "sub" }, { script: "super" }],
+  [{ indent: "-1" }, { indent: "+1" }],
+  [{ direction: "rtl" }],
+  [{ size: ["small", false, "large", "huge"] }],
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+  [{ color: [] }, { background: [] }],
   [{ font: [] }],
   [{ align: [] }],
   ["link", "image", "video"],
-  ["clean"] // remove formatting button
+  ["clean"]
 ];
 export default {
   components: {
@@ -47,13 +47,13 @@ export default {
   },
   data() {
     return {
-      detailContent: "<h2>I am Example</h2>", // 富文本内容
+      detailContent: "<h2>I am Example</h2>", //
       editorOption: {
         placeholder: "",
         theme: "snow", // or 'bubble'
         modules: {
           toolbar: {
-            container: toolbarOptions, // 工具栏
+            container: toolbarOptions, //
             handlers: {
               image: function(value) {
                 if (value) {
@@ -78,13 +78,11 @@ export default {
       console.log(this.detailContent);
     },
     handleChange(data) {
+      console.log(data);
       if (data.file.response) {
         let quill = this.$refs.myQuillEditor.quill;
-        // 获取光标所在位置
         let length = quill.getSelection().index;
-        // 插入图片  res.info为服务器返回的图片地址
         quill.insertEmbed(length, "image", data.file.response.path);
-        // 调整光标到最后
         quill.setSelection(length + 1);
       }
     }
@@ -93,6 +91,11 @@ export default {
     editor() {
       return this.$refs.myQuillEditor.quillEditor;
     }
+  },
+  beforeDestroy() {
+    console.log(1111111111)
+    this.editor.destory();
+    console.log(1111111111)
   },
   mounted() {
     console.log("this is my editor", this.editor);

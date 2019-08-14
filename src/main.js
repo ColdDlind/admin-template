@@ -16,7 +16,9 @@ import {
   Dropdown,
   LocaleProvider,
   DatePicker,
-  Upload
+  Card,
+  Upload,
+  Table
 } from "ant-design-vue";
 Vue.use(Button);
 Vue.use(Layout);
@@ -28,10 +30,14 @@ Vue.use(Dropdown);
 Vue.use(LocaleProvider);
 Vue.use(DatePicker);
 Vue.use(Upload);
+Vue.use(Card);
+Vue.use(Table);
 Vue.config.productionTip = false;
 
 Vue.use(VueI18n);
+import JsonExcel from 'vue-json-excel'
 
+Vue.component('downloadExcel', JsonExcel)
 const i18n = new VueI18n({
   locale: queryString.parse(location.search).locale || "zhCN",
   messages: {

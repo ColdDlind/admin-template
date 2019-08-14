@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #routerView {
+            width: 100%;
+            height: 300px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- router-link -->
+    <div>
+        <ul>
+            <li><a href="/home">home</a></li>
+            <li><a href="/about">about</a></li>
+        </ul>
+    </div>
+    <hr>
+    <!-- router-view -->
+    <div id="routerView">
+
+    </div>
+    <script>
+        var router = null;
+        window.onload = function () {
+            let aTagDom = document.querySelectorAll("a")
+            aTagDom.forEach(item => {
+                item.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    let path = e.target.getAttribute("href")
+                    history.pushState(null, "", path)
+                    onPopState()
+                })
+            })
+            router = document.querySelector("#routerView")
+        }
+
+        window.addEventListener('popstate', onPopState)
+
+        function onPopState() {
+            switch (location.pathname) {
+                case "" || '/':
+                    routerView.innerHTML = 'Home'
+                    return
+                case '/home':
+                    routerView.innerHTML = 'Home'
+                    return
+                case '/about':
+                    routerView.innerHTML = 'About'
+                    return
+                default:
+                    routerView.innerHTML = '首页'
+                    return
+            }
+        }
+    </script>
+</body>
+
+</html>

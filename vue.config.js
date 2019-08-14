@@ -30,5 +30,5 @@ module.exports = {
         javascriptEnabled: true
       }
     }
-  }
+  },
 };
